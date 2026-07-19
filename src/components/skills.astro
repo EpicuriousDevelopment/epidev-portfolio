@@ -1,0 +1,68 @@
+---
+import logo from "../assets/logo.svg";
+---
+<section id="skillsec" class="skillsec">
+    
+    <div class="skills">
+<div class="skill-wrapper">
+        <img src={logo.src} alt="skill-logo" class="logo-skill" width="64" height="64px" />
+        <h2 class="skill-title">JavaScript</h2>
+        <p class="skill-paragraph">2 jaar ervaring in NodeJS, Express en JavaScript</p>
+    </div>
+    <div class="skill-wrapper">
+        <img src={logo.src} alt="skill-logo" class="logo-skill" width="64" height="64px" />
+        <h2 class="skill-title">HTML/(S)CSS</h2>
+        <p class="skill-paragraph">Ipsum</p>
+    </div>
+    <div class="skill-wrapper">
+        <img src={logo.src} alt="skill-logo" class="logo-skill" width="64" height="64px" />
+        <h2 class="skill-title">Data Science</h2>
+        <p class="skill-paragraph">Ipsum</p>
+    </div>
+    <div class="skill-wrapper">
+        <img src={logo.src} alt="skill-logo" class="logo-skill" width="64" height="64px" />
+        <h2 class="skill-title">Python</h2>
+        <p class="skill-paragraph">Ipsum</p>
+    </div>
+    <div class="skill-wrapper">
+        <img src={logo.src} alt="skill-logo" class="logo-skill" width="64" height="64px" />
+        <h2 class="skill-title">Overige technologieën</h2>
+        <p class="skill-paragraph">Astro</p>
+    </div>
+    </div>
+    
+    
+</section>
+
+<style lang="scss">
+    @use '../styles/variables' as *;
+    .skillsec {
+        height: 30vh;
+        width: 100%;
+        scroll-margin-top: 5vh;
+        border-top: 1px solid rgba($blue, 0.15);
+        text-align: center;
+    }
+    .skills {
+        
+        display: flex;
+        justify-content: space-around;
+        align-items: flex-start;
+        padding-top: 5vh;
+        height: 30vh;
+    }
+    .skill-wrapper {
+        height: 18vh;
+        width: 8vw;
+        border-radius: 25px;
+        padding: 10px;
+        
+        background: linear-gradient(
+        135deg,
+        rgba($blue, 0.08) 0%,
+        rgba(139, 92, 246, 0.05) 100%
+        );
+        border: 1px solid rgba($blue, 0.15);
+    }
+    
+</style>
