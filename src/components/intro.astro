@@ -16,9 +16,9 @@ import LogoModel from './logomodel.astro';
         <span data-i18n="ht">Hoi, ik ben</span> 
         <span class="blauw hero-titlename">Luuk.</span>
       </h1>
-      <h4 id="hero-h4">Freelance webdeveloper • Noord-Brabant</h4>
+      <h4 id="hero-h4" data-i18n="hs">Freelance webdeveloper • Noord-Brabant</h4>
       
-      <p class="hero-description" data-i18n="hd">Ik ben een 18 jaar oude beginnende developer die graag wilt beginnen met het opbouwen van een sterk portfolio met veel diverse projecten zoals websites en software.</p>
+      <p class="hero-description" data-i18n="hd">Ik bouw websites en kleine software-projecten, en ben begonnen aan een bachelor Data Science aan de TU/e.</p>
       <div class="double-button">
         <a class="btn-a main-btn" data-i18n="hbp" href="#projects"> Bekijk mijn projecten </a>
         <a class="btn-a main-btn" data-i18n="hbc" href="#contact"> Contact opnemen </a>
@@ -43,128 +43,16 @@ import LogoModel from './logomodel.astro';
   </div>
   <div class="right">
     <div class="right-top">
-      <!-- <div class="cube-wrapper">
-        <div class="cube">
-          <div class="face frontc"></div>
-          <div class="face backc"></div>
-          <div class="face leftc"></div>
-          <div class="face rightc"></div>
-          <div class="face topc"></div>
-          <div class="face bottomc"></div>
-        </div>
-        <div class="cube-shadow"></div>
-        
-      </div> --> 
+      
       <LogoModel />
     </div>
-    <div class="right-middle"></div>
-    <div class="right-bottom"></div>
+    
   </div>
   
 </section>
 
 <style lang="scss">
   @use "../styles/variables" as *;
-  .cube-wrapper {
-    perspective: 600px;
-    position: relative;
-    width: 150px;
-    height: 150px;
-    margin-bottom: 24px;
-    transform-style: preserve-3d;
-  }
-
-  .cube {
-    width: 150px;
-    height: 150px;
-    position: relative;
-    transform-style: preserve-3d;
-    animation: rotate 8s infinite linear;
-  }
-
-  .face {
-    position: absolute;
-    width: 150px;
-    height: 150px;
-  }
-
-  .frontc {
-    transform: translateZ(75px);
-    background: $blue;
-  }
-  .backc {
-    transform: rotateY(180deg) translateZ(75px);
-    background: darken($blue, 15%);
-  }
-  .leftc {
-    transform: rotateY(-90deg) translateZ(75px);
-    background: darken($blue, 8%);
-  }
-  .rightc {
-    transform: rotateY(90deg) translateZ(75px);
-    background: darken($blue, 5%);
-  }
-  .topc {
-    transform: rotateX(90deg) translateZ(75px);
-    background: lighten($blue, 10%);
-  }
-  .bottomc {
-    transform: rotateX(-90deg) translateZ(75px);
-    background: darken($blue, 20%);
-  }
-
-  @keyframes rotate {
-    0% {
-      transform: rotateX(0deg) rotateY(0deg);
-    }
-    25% {
-      transform: rotateX(20deg) rotateY(90deg);
-    }
-    50% {
-      transform: rotateX(0deg) rotateY(180deg);
-    }
-    75% {
-      transform: rotateX(-20deg) rotateY(270deg);
-    }
-    100% {
-      transform: rotateX(0deg) rotateY(360deg);
-    }
-  }
-
-  .cube-shadow {
-    width: 150px;
-    height: 30px;
-    background: radial-gradient(ellipse, rgba($blue, 0.4) 0%, transparent 70%);
-    margin-top: 18.75px;
-    animation: shadow-pulse 8s infinite linear;
-    border-radius: 50%;
-    position: absolute;
-    left: 0;
-    top: 170px;
-  }
-
-  @keyframes shadow-pulse {
-    0% {
-      transform: scaleX(1);
-      opacity: 0.6;
-    }
-    25% {
-      transform: scaleX(0.85);
-      opacity: 0.4;
-    }
-    50% {
-      transform: scaleX(1);
-      opacity: 0.6;
-    }
-    75% {
-      transform: scaleX(0.85);
-      opacity: 0.4;
-    }
-    100% {
-      transform: scaleX(1);
-      opacity: 0.6;
-    }
-  }
   .introsec {
     height: 65vh;
     display: flex;
@@ -195,7 +83,7 @@ import LogoModel from './logomodel.astro';
   position: absolute;
   inset: -3px;
   border-radius: 50%;
-  border: 1.5px solid #22c55e;
+  border: 1.5px solid $green-pulse;
   opacity: 0.4;
   animation: pulse-ring 2s ease infinite;
 }
@@ -212,8 +100,7 @@ import LogoModel from './logomodel.astro';
   font-size: 60px;
   padding-bottom: 10px;
 }
-  .jobtitle {
-  }
+  
   .blauw {
     color: $blue;
     display: inline-block;
@@ -309,7 +196,7 @@ import LogoModel from './logomodel.astro';
     background: linear-gradient(
       135deg,
       rgba($blue, 0.08) 0%,
-      rgba(139, 92, 246, 0.05) 100%
+      rgba($purple, 0.05) 100%
     );
     border: 1px solid rgba($blue, 0.2);
     backdrop-filter: blur(12px);
@@ -329,18 +216,7 @@ import LogoModel from './logomodel.astro';
 <script>
   import gsap from "gsap";
   
-  gsap.from(".badge", {
-    y: -40,
-    opacity: 0,
-    duration: 1,
-    ease: "power2.out",
-  });
-  gsap.from(".cube-wrapper", {
-    scale: 0,
-    duration: 0.6,
-    delay: 0.4,
-    ease: "back.out(1.7)",
-  });
+  
   gsap.from(".double-button", {
     scale: 0,
     duration: 1.2,

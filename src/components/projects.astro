@@ -11,7 +11,6 @@ import { projects } from "../data/projects.js";
       projects.map((p, i) =>
         p.comingSoon ? (
           <div class="card soon">
-            <p>🔨</p>
             <h3 data-project-key="title" data-project-index={i}>
               {p.title.nl}
             </h3>
@@ -19,7 +18,7 @@ import { projects } from "../data/projects.js";
           </div>
         ) : (
           <div class={`card ${p.featured ? "featured" : ""}`}>
-            {p.featured && <div class="featured-bar" />}
+            
             <span class="tag" data-project-key="tag" data-project-index={i}>
               {p.tag.nl}
             </span>
@@ -37,12 +36,12 @@ import { projects } from "../data/projects.js";
             <div class="links">
               {p.live && (
                 <a href={p.live} >
-                  ↗ Live
+                  Live
                 </a>
               )}
               {p.github && (
                 <a href={p.github} >
-                  ⌥ Code
+                  Code
                 </a>
               )}
             </div>
@@ -94,12 +93,7 @@ import { projects } from "../data/projects.js";
     opacity: 0.6;
   }
 
-  .featured-bar {
-    height: 2px;
-    background: linear-gradient(90deg, $blue, $purple);
-    border-radius: 11px 11px 0 0;
-    margin: -24px -24px 0;
-  }
+ 
 
   .tag {
     font-size: 11px;
@@ -149,27 +143,5 @@ import { projects } from "../data/projects.js";
   .links a:hover {
     color: $text-primary;
   }
-  .section-divider {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    margin-bottom: 28px;
-
-    &::before,
-    &::after {
-      content: "";
-      flex: 1;
-      height: 1px;
-      background: rgba($blue, 0.15);
-    }
-
-    span {
-      font-size: 17px;
-      font-weight: 600;
-      color: $text-muted;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      white-space: nowrap;
-    }
-  }
+  
 </style>

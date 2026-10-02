@@ -1,15 +1,28 @@
 ---
+const year = new Date().getFullYear();
 ---
 
-<section id="footer" class="footer">
-    <h1>voettekst</h1>
-</section>
+<footer class="footer">
+    <div class="footer-inner">
+        <p>{year} EpiDev</p>
+        <a href="#" data-i18n="ft">Terug naar boven</a>
+    </div>
+</footer>
 
 <style lang="scss">
     @use '../styles/variables' as *;
     .footer {
-        height: 25vh;
-        width: 100%;
         border-top: 1px solid rgba($blue, 0.15);
+    }
+    .footer-inner {
+        width: 75%;
+        margin: 0 auto;
+        padding: 24px 48px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    p, a {
+        font-size: 14px;
     }
 </style>

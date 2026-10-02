@@ -19,12 +19,14 @@
   const canvas = document.getElementById("logo-canvas") as HTMLCanvasElement;
   if (!canvas) throw new Error("Canvas not found");
 
+    const DEG = Math.PI / 180;
+  
+  const LOGO_SVG_WIDTH = 1069;
+  const LOGO_SCENE_WIDTH = 2;
+
   const parent = canvas.parentElement!;
   let W = parent.clientWidth;
   let H = parent.clientHeight;
-
-  canvas.width = W;
-  canvas.height = H;
 
   const renderer = new THREE.WebGLRenderer({
     canvas,
@@ -40,12 +42,12 @@
 
   scene.add(new THREE.AmbientLight(0xffffff, 0.4));
 
-  const key = new THREE.DirectionalLight(0x3b82f6, 2.5);
-  key.position.set(2, 3, 4);
-  scene.add(key);
-  const rim = new THREE.DirectionalLight(0x8b5cf6, 1.5);
-  rim.position.set(-3, -1, -2);
-  scene.add(rim);
+  const blueLight = new THREE.DirectionalLight(0x3b82f6, 2.5);
+  blueLight.position.set(2, 3, 4);
+  scene.add(blueLight);
+  const purpleLight = new THREE.DirectionalLight(0x8b5cf6, 1.5);
+  purpleLight.position.set(-3, -1, -2);
+  scene.add(purpleLight);
   const shadowGeo = new THREE.CircleGeometry(0.8, 32);
   const shadowMat = new THREE.MeshBasicMaterial({
     color: 0x2c82f9,
@@ -90,7 +92,7 @@
 
     scene.add(group);
 
-    const scale = 2 / 1069;
+    const scale = LOGO_SCENE_WIDTH / LOGO_SVG_WIDTH;
     group.scale.set(scale, -scale, scale);
 
     group.updateMatrixWorld(true);
@@ -102,8 +104,7 @@
   window.addEventListener("resize", () => {
     W = parent.clientWidth;
     H = parent.clientHeight;
-    canvas.width = W;
-    canvas.height = H;
+
     renderer.setSize(W, H);
     camera.aspect = W / H;
     camera.updateProjectionMatrix();
@@ -115,9 +116,8 @@
     t += 0.01;
 
     if (group) {
-      group.rotation.y = Math.sin(t * 0.8) * (10 * Math.PI / 180);
-  
-      group.rotation.x = Math.sin(t * 0.5) * (6 * Math.PI / 180);
+      group.rotation.y = Math.sin(t * 0.8) * 10 * DEG;
+      group.rotation.x = Math.sin(t * 0.5) * 6 * DEG;
     }
 
     renderer.render(scene, camera);

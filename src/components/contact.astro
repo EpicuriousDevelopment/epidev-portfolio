@@ -1,39 +1,93 @@
 ---
+import { contact } from "../data/contact.js";
+
+const linkedinLabel = contact.linkedin.replace(/^https?:\/\/(www\.)?/, "")
 ---
 <section id="contact" class="contact">
     <div class="section-divider">
     <span data-i18n="bc">Contact</span>
   </div>
+
+  <p class="contact-text" data-i18n="ci">
+    Heb je een vraag, opmerking of wil je samenwerken? Stuur me een berichtje!
+  </p>
+
+  <div class="contact-links">
+        <a class="contact-card" href={`mailto:${contact.email}`}>
+            <span class="contact-label" data-i18n="ce">E-mail</span>
+            <span class="contact-value">{contact.email}</span>
+        </a>
+        <a class="contact-card" href={contact.linkedin} target="_blank" rel="noopener noreferrer">
+            <span class="contact-label">LinkedIn</span>
+            <span class="contact-value">{linkedinLabel}</span>
+        </a>
+    </div>
 </section>
 <style lang="scss">
     @use '../styles/variables' as *;
     .contact {
-        height: 70vh;
         width: 75%;
         margin: 0 auto;
-    padding: 48px;
+        padding: 48px 48px 96px;
+        scroll-margin-top: 5vh;
     }
     .section-divider {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    margin-bottom: 28px;
-         
-    &::before,
-    &::after {
-      content: "";
-      flex: 1;
-      height: 1px;
-      background: rgba($blue, 0.15);
-    }
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        margin-bottom: 28px;
 
-    span {
-      font-size: 17px;
-      font-weight: 600;
-      color: $text-muted;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      white-space: nowrap;
+        &::before,
+        &::after {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background: rgba($blue, 0.15);
+        }
+
+        span {
+            font-size: 17px;
+            font-weight: 600;
+            color: $text-muted;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
     }
-}
+    .contact-text {
+        max-width: 520px;
+        margin: 0 auto 32px;
+        text-align: center;
+    }
+    .contact-links {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 16px;
+    }
+    .contact-card {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        min-width: 240px;
+        padding: 20px 24px;
+        border: 1px solid rgba($blue, 0.15);
+        border-radius: 12px;
+        transition: border-color $transition, background $transition;
+
+        &:hover {
+            border-color: rgba($blue, 0.4);
+            background: rgba($blue, 0.06);
+        }
+    }
+    .contact-label {
+        font-size: 12px;
+        color: $blue;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+    }
+    .contact-value {
+        font-size: 16px;
+        color: $text-primary;
+    }
 </style>

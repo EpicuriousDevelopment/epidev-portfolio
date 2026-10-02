@@ -11,6 +11,7 @@ export function setLanguage(lang) {
         if (text) el.textContent = text;
     });
     localStorage.setItem('lang', lang);
+    document.documentElement.lang = lang;
     document.querySelectorAll('.lang-btn').forEach(btn => {
         btn.classList.toggle('active', btn.dataset.lang === lang);
     });
