@@ -24,8 +24,13 @@ import Footer from '../components/footer.astro';
 
   html {
     scroll-behavior: smooth;
+    
+    scroll-padding-top: 80px;
     max-width: 100%;
 
+    @media (max-width: $bp-phone) {
+      scroll-padding-top: 112px;
+    }
     body {
       background: $background;
       color: $text-primary;

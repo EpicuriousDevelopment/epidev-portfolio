@@ -10,19 +10,22 @@ const year = new Date().getFullYear();
 </footer>
 
 <style lang="scss">
+
     @use '../styles/variables' as *;
     .footer {
         border-top: 1px solid rgba($blue, 0.15);
     }
     .footer-inner {
-        width: 75%;
-        margin: 0 auto;
-        padding: 24px 48px;
+        @include page-width;
+        padding-top: 24px;
+        padding-bottom: 24px;
         display: flex;
         justify-content: space-between;
         align-items: center;
+        gap: 16px;
     }
     p, a {
         font-size: 14px;
     }
+
 </style>

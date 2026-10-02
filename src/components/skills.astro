@@ -39,28 +39,25 @@ import logoextra from "../assets/icons8-plus.svg";
 </section>
 
 <style lang="scss">
+   
     @use '../styles/variables' as *;
     .skillsec {
-        height: 30vh;
-        width: 100%;
-        scroll-margin-top: 5vh;
         border-top: 1px solid rgba($blue, 0.15);
         text-align: center;
     }
     .skills {
-        
-        display: flex;
-        justify-content: space-around;
-        align-items: flex-start;
-        padding-top: 5vh;
-        height: 30vh;
+        @include page-width;
+        display: grid;
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+        gap: 16px;
+        padding-top: 48px;
+        padding-bottom: 48px;
     }
     .skill-wrapper {
-        height: 18vh;
-        width: 8vw;
+        box-sizing: border-box;
         border-radius: 25px;
-        padding: 10px;
-        
+        padding: 20px 12px;
+
         background: linear-gradient(
         135deg,
         rgba($blue, 0.08) 0%,
@@ -68,6 +65,46 @@ import logoextra from "../assets/icons8-plus.svg";
         );
         border: 1px solid rgba($blue, 0.15);
     }
+    .skill-title {
+        font-size: 1.25rem;
+        margin: 12px 0 8px;
+    }
+    .skill-paragraph {
+        font-size: 0.9rem;
+        line-height: 1.6;
+    }
+
+
+    @media (max-width: $bp-tablet) {
+        .skills {
+            grid-template-columns: repeat(6, minmax(0, 1fr));
+        }
+        .skill-wrapper {
+            grid-column: span 2;
+        }
+        .skill-wrapper:nth-child(4) {
+            grid-column: 2 / span 2;
+        }
+        .skill-wrapper:nth-child(5) {
+            grid-column: 4 / span 2;
+        }
+    }
+
+
+    @media (max-width: $bp-phone) {
+        .skills {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+        .skill-wrapper,
+        .skill-wrapper:nth-child(4),
+        .skill-wrapper:nth-child(5) {
+            grid-column: auto;
+        }
+        .skill-wrapper:last-child {
+            grid-column: 1 / -1;
+        }
+    }
+
     
     
 </style>

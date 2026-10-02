@@ -9,7 +9,7 @@ const linkedinLabel = contact.linkedin.replace(/^https?:\/\/(www\.)?/, "")
   </div>
 
   <p class="contact-text" data-i18n="ci">
-    Heb je een vraag, opmerking of wil je samenwerken? Stuur me een berichtje!
+    Heb je een idee, een vraag of een project? Stuur me gerust een mailtje of een bericht op LinkedIn.
   </p>
 
   <div class="contact-links">
@@ -24,35 +24,12 @@ const linkedinLabel = contact.linkedin.replace(/^https?:\/\/(www\.)?/, "")
     </div>
 </section>
 <style lang="scss">
+
     @use '../styles/variables' as *;
     .contact {
-        width: 75%;
-        margin: 0 auto;
-        padding: 48px 48px 96px;
-        scroll-margin-top: 5vh;
-    }
-    .section-divider {
-        display: flex;
-        align-items: center;
-        gap: 16px;
-        margin-bottom: 28px;
-
-        &::before,
-        &::after {
-            content: "";
-            flex: 1;
-            height: 1px;
-            background: rgba($blue, 0.15);
-        }
-
-        span {
-            font-size: 17px;
-            font-weight: 600;
-            color: $text-muted;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            white-space: nowrap;
-        }
+        @include page-width;
+        padding-top: 48px;
+        padding-bottom: 96px;
     }
     .contact-text {
         max-width: 520px;
@@ -89,5 +66,20 @@ const linkedinLabel = contact.linkedin.replace(/^https?:\/\/(www\.)?/, "")
     .contact-value {
         font-size: 16px;
         color: $text-primary;
+
+        overflow-wrap: anywhere;
     }
+
+    @media (max-width: $bp-phone) {
+        .contact {
+            padding-bottom: 64px;
+        }
+        .contact-links {
+            flex-direction: column;
+        }
+        .contact-card {
+            min-width: 0;
+        }
+    }
+
 </style>

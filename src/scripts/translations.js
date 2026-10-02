@@ -15,7 +15,7 @@ ci = contact intro tekst
 ce = contact e-mail label
 ft = footer terug naar boven
 vto = vaardigheden titel overig
-vto = vaardigheden titel overig
+
 vdj = vaardigheden description javascript
 vdh = vaardigheden description html css
 vdd = vaardigheden description data science

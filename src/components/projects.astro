@@ -52,19 +52,24 @@ import { projects } from "../data/projects.js";
   </div>
 </section>
 <style lang="scss">
+
   @use "../styles/variables" as *;
   .projects {
-    height: 50vh;
-    width: 75%;
-    margin: 0 auto;
-    padding: 48px;
-    scroll-margin-top: 5vh;
+    @include page-width;
+    padding-top: 48px;
+    padding-bottom: 48px;
   }
 
   .project-grid {
     display: grid;
-    grid-template-columns: 1.4fr 1fr;
+    grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
     gap: 12px;
+  }
+
+  @media (max-width: $bp-tablet) {
+    .project-grid {
+      grid-template-columns: minmax(0, 1fr);
+    }
   }
 
   .card {
@@ -92,8 +97,6 @@ import { projects } from "../data/projects.js";
     text-align: center;
     opacity: 0.6;
   }
-
- 
 
   .tag {
     font-size: 11px;
@@ -138,10 +141,13 @@ import { projects } from "../data/projects.js";
   .links a {
     font-size: 12px;
     color: $text-muted;
+
+    padding: 8px 0;
   }
 
   .links a:hover {
     color: $text-primary;
   }
+
   
 </style>
