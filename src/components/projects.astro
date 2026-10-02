@@ -1,14 +1,175 @@
 ---
+import { projects } from "../data/projects.js";
 ---
+
 <section id="projects" class="projects">
-    <h1>projecten</h1>
+  <div class="section-divider">
+    <span data-i18n="bp">Projecten</span>
+  </div>
+  <div class="project-grid">
+    {
+      projects.map((p, i) =>
+        p.comingSoon ? (
+          <div class="card soon">
+            <p>🔨</p>
+            <h3 data-project-key="title" data-project-index={i}>
+              {p.title.nl}
+            </h3>
+            <p data-project-key="coming" data-project-index={i}>{p.coming.nl}</p>
+          </div>
+        ) : (
+          <div class={`card ${p.featured ? "featured" : ""}`}>
+            {p.featured && <div class="featured-bar" />}
+            <span class="tag" data-project-key="tag" data-project-index={i}>
+              {p.tag.nl}
+            </span>
+            <h3 data-project-key="title" data-project-index={i}>
+              {p.title.nl}
+            </h3>
+            <p data-project-key="description" data-project-index={i}>
+              {p.description.nl}
+            </p>
+            <div class="stack">
+              {p.stack.map((s) => (
+                <span class="stack-tag">{s}</span>
+              ))}
+            </div>
+            <div class="links">
+              {p.live && (
+                <a href={p.live} >
+                  ↗ Live
+                </a>
+              )}
+              {p.github && (
+                <a href={p.github} >
+                  ⌥ Code
+                </a>
+              )}
+            </div>
+          </div>
+        ),
+      )
+    }
+  </div>
 </section>
 <style lang="scss">
-    @use '../styles/variables' as *;
-    .projects {
-        height: 50vh;
-        width: 100%;
-        scroll-margin-top: 5vh;
-        border-top: 1px solid rgba($blue, 0.15);
+  @use "../styles/variables" as *;
+  .projects {
+    height: 50vh;
+    width: 75%;
+    margin: 0 auto;
+    padding: 48px;
+    scroll-margin-top: 5vh;
+  }
+
+  .project-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 12px;
+  }
+
+  .card {
+    border: 1px solid rgba($blue, 0.15);
+    border-radius: 12px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .card.featured {
+    border-color: rgba($blue, 0.3);
+    background: linear-gradient(
+      135deg,
+      rgba($blue, 0.06) 0%,
+      rgba($purple, 0.03) 100%
+    );
+  }
+
+  .card.soon {
+    border-style: dashed;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    opacity: 0.6;
+  }
+
+  .featured-bar {
+    height: 2px;
+    background: linear-gradient(90deg, $blue, $purple);
+    border-radius: 11px 11px 0 0;
+    margin: -24px -24px 0;
+  }
+
+  .tag {
+    font-size: 11px;
+    color: $blue;
+    background: rgba($blue, 0.1);
+    border-radius: 4px;
+    padding: 2px 8px;
+    width: fit-content;
+  }
+
+  h3 {
+    font-size: 15px;
+    font-weight: 600;
+  }
+
+  p {
+    font-size: 13px;
+    color: $text-muted;
+    line-height: 1.65;
+  }
+
+  .stack {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+
+  .stack-tag {
+    font-size: 11px;
+    color: $text-muted;
+    border: 1px solid rgba($blue, 0.15);
+    border-radius: 4px;
+    padding: 2px 7px;
+  }
+
+  .links {
+    display: flex;
+    gap: 16px;
+    margin-top: 4px;
+  }
+
+  .links a {
+    font-size: 12px;
+    color: $text-muted;
+  }
+
+  .links a:hover {
+    color: $text-primary;
+  }
+  .section-divider {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 28px;
+
+    &::before,
+    &::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: rgba($blue, 0.15);
     }
+
+    span {
+      font-size: 17px;
+      font-weight: 600;
+      color: $text-muted;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+  }
 </style>

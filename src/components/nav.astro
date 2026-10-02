@@ -11,14 +11,14 @@ import logo from "../assets/logo.svg";
     <h1 class="logo-name">&nbspEpiDev</h1>
   </div>
   <div class="references">
-    <a href="#skillsec">Vaardigheden</a>
-    <a href="#contact" class="contact-ref">Contact</a>
-    <a href="#projects">Projecten</a>
+    <a href="#skillsec" data-i18n="bv">Vaardigheden</a>
+    <a href="#contact"  data-i18n="bc" class="contact-ref">Contact</a>
+    <a href="#projects" data-i18n="bp">Projecten</a>
     
   </div>
   <div class="langswitchbtns">
-    <button class="lang-btn">NL</button>
-    <button class="lang-btn">EN</button>
+    <button class="lang-btn" data-lang="nl">NL</button>
+    <button class="lang-btn" data-lang="en">EN</button>
   </div>
 </section>
 
@@ -78,6 +78,27 @@ border-bottom: 1px solid rgba($blue, 0.15);
   .langswitchbtns {
     display: flex;
     justify-content: flex-end;
+  }
+
+  .lang-btn {
+    background: transparent;
+    color: $text-muted;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    padding: 6px 10px;
+    font-size: 20px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all $transition;
+    font-family: $font-sans;
+    &:hover {
+      color: $text-primary;
+    }
+    &.active {
+      color: $blue;
+      border-color: rgba($blue, 0.3);
+      background: rgba($blue, 0.08);
+    }
   }
 </style>
 

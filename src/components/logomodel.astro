@@ -1,0 +1,126 @@
+---
+
+---
+
+<canvas id="logo-canvas"></canvas>
+
+<style>
+  canvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+</style>
+
+<script>
+  import * as THREE from "three";
+  import { SVGLoader } from "three/examples/jsm/loaders/SVGLoader.js";
+
+  const canvas = document.getElementById("logo-canvas") as HTMLCanvasElement;
+  if (!canvas) throw new Error("Canvas not found");
+
+  const parent = canvas.parentElement!;
+  let W = parent.clientWidth;
+  let H = parent.clientHeight;
+
+  canvas.width = W;
+  canvas.height = H;
+
+  const renderer = new THREE.WebGLRenderer({
+    canvas,
+    antialias: true,
+    alpha: true,
+  });
+  renderer.setSize(W, H);
+  renderer.setPixelRatio(window.devicePixelRatio || 1);
+
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(45, W / H, 0.1, 1000);
+  camera.position.set(0, 0, 6);
+
+  scene.add(new THREE.AmbientLight(0xffffff, 0.4));
+
+  const key = new THREE.DirectionalLight(0x3b82f6, 2.5);
+  key.position.set(2, 3, 4);
+  scene.add(key);
+  const rim = new THREE.DirectionalLight(0x8b5cf6, 1.5);
+  rim.position.set(-3, -1, -2);
+  scene.add(rim);
+  const shadowGeo = new THREE.CircleGeometry(0.8, 32);
+  const shadowMat = new THREE.MeshBasicMaterial({
+    color: 0x2c82f9,
+    transparent: true,
+    opacity: 0.15,
+  });
+  const shadow = new THREE.Mesh(shadowGeo, shadowMat);
+  shadow.position.set(0, -1.2, 0);
+  shadow.rotation.x = -Math.PI / 2;
+  scene.add(shadow);
+
+  let group: THREE.Group | null = null;
+
+  const loader = new SVGLoader();
+
+  loader.load("/logo.svg", (data) => {
+    group = new THREE.Group();
+
+    data.paths.forEach((path) => {
+      const shapes = path.toShapes();
+      shapes.forEach((shape) => {
+        const geo = new THREE.ExtrudeGeometry(shape, {
+          depth: 140,
+          bevelEnabled: true,
+          bevelThickness: 2,
+          bevelSize: 1,
+          bevelSegments: 4,
+        });
+
+        group!.add(
+          new THREE.Mesh(
+            geo,
+            new THREE.MeshStandardMaterial({
+              color: 0x2c82f9,
+              metalness: 0.3,
+              roughness: 0.3,
+            }),
+          ),
+        );
+      });
+    });
+
+    scene.add(group);
+
+    const scale = 2 / 1069;
+    group.scale.set(scale, -scale, scale);
+
+    group.updateMatrixWorld(true);
+
+    const box = new THREE.Box3().setFromObject(group);
+    const center = box.getCenter(new THREE.Vector3());
+    group.position.set(-center.x, -center.y, -center.z);
+  });
+  window.addEventListener("resize", () => {
+    W = parent.clientWidth;
+    H = parent.clientHeight;
+    canvas.width = W;
+    canvas.height = H;
+    renderer.setSize(W, H);
+    camera.aspect = W / H;
+    camera.updateProjectionMatrix();
+  });
+
+  let t = 0;
+  function animate() {
+    requestAnimationFrame(animate);
+    t += 0.01;
+
+    if (group) {
+      group.rotation.y = Math.sin(t * 0.8) * (10 * Math.PI / 180);
+  
+      group.rotation.x = Math.sin(t * 0.5) * (6 * Math.PI / 180);
+    }
+
+    renderer.render(scene, camera);
+  }
+  animate();
+</script>
